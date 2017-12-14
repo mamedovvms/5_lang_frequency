@@ -12,6 +12,7 @@ def get_most_frequent_words(text):
     set_words = {word: words_text.count(word) for word in set(words_text)}
     return sorted(set_words.items(), key=lambda item: item[1], reverse=True)
 
+
 if __name__ == '__main__':
     filepath = input('Add path to file: ')
     text = load_data(filepath)
