@@ -17,4 +17,4 @@ if __name__ == '__main__':
     filepath = input('Add path to file: ')
     text = load_data(filepath)
     for word, count in get_most_frequent_words(text):
-        print(word, ' : ', count)
+        print(word, ':', count)
