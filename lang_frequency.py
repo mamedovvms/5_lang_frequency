@@ -14,11 +14,11 @@ def get_most_frequent_words(text, amount_out):
     return collections.Counter(words_text).most_common(amount_out)
 
 def main():
-    AMOUNTOUT = 10
+    const_amountout = 10
 
     parser = argparse.ArgumentParser()
     parser.add_argument('pathfile', help='Path to the text file')
-    parser.add_argument('-a', '--amount_out', type=int, default=AMOUNTOUT, help='The number of the most frequent words')
+    parser.add_argument('-a', '--amount_out', type=int, default=const_amountout, help='The number of the most frequent words')
 
     params = parser.parse_args()
 
