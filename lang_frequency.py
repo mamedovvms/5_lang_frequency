@@ -1,22 +1,38 @@
 import re
 import collections
+import argparse
+import os
 
 
 def load_data(filepath):
+    with open(filepath, 'rt') as file:
+        return file.read()
 
-    with open(filepath, 'rt') as f:
-        return f.read().lower()
 
-
-def get_most_frequent_words(text):
+def get_most_frequent_words(text, amount_out):
     words_text = re.findall(r'\b(?!\d)\w+\b', text)
-    return collections.Counter(words_text)
+    return collections.Counter(words_text).most_common(amount_out)
 
+def main():
+    AMOUNT_OUT = 10
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('pathfile', help='Path to the text file')
+    parser.add_argument('-a', '--amount_out', type=int, default=AMOUNT_OUT, help='The number of the most frequent words')
+
+    params = parser.parse_args()
+
+    filepath = params.pathfile
+    amount_out = params.amount_out
+
+    if not os.path.isfile(filepath):
+        exit('File not found')
+
+    text = load_data(filepath).lower()
+
+    frequent_words = get_most_frequent_words(text, amount_out)
+    for word, count in frequent_words:
+        print('{} : {}'.format(word, count))
 
 if __name__ == '__main__':
-    filepath = input('Add path to file: ')
-    amount_out = int(input('Amount output: '))
-    text = load_data(filepath)
-    frequent_words = get_most_frequent_words(text)
-    for word, count in get_most_frequent_words(text).most_common(amount_out):
-        print(word, ' : ', count)
+    main()
