@@ -18,7 +18,7 @@ the most common
 
 $python lang_frequency.py text.txt -a 3# possibly requires call of python3 executive instead of just python
 
-нет : 1081
+нет : 1082
 type : 1067
 publicphone : 1066
 ```
